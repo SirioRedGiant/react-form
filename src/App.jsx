@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/index.css";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
+  const articles = [
+    { id: "1", title: "Sparatutto" },
+    { id: "2", title: "Avventura" },
+    { id: "3", title: "Real Time Strategies" },
+  ];
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-8 col-lg-6">
+          <h2 className="display-4 mb-4 text-center fw-bold text-primary">
+            Articoli
+          </h2>
 
-export default App
+          <ul className="list-group shadow-lg">
+            {articles.map((article) => (
+              <li
+                key={article.id}
+                className="list-group-item list-group-item-action "
+              >
+                {article.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
