@@ -28,6 +28,15 @@ export default function App() {
     setArticles([...articles, newArticle]);
     setFormData("");
   };
+
+  //note Funzione per cancellare l'articolo
+  const deleteArticle = (idToDelete) => {
+    const updatedArticles = articles.filter(
+      (article) => article.id !== idToDelete,
+    );
+    setArticles(updatedArticles);
+  };
+
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
@@ -64,6 +73,14 @@ export default function App() {
                 className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
               >
                 <span className="fs-5">{article.title}</span>
+
+                {/*//^ bottone che cancella */}
+                <button
+                  className="btn btn-danger btm-sm"
+                  onClick={() => deleteArticle(article.id)}
+                >
+                  Cancella
+                </button>
               </li>
             ))}
           </ul>
