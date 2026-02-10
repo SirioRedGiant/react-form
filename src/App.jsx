@@ -2,6 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/index.css";
 import { useState } from "react";
 
+import ArticleList from "./assets/components/ArticleList";
+import ArticleForm from "./assets/components/ArticleForm";
+
 export default function App() {
   const [articles, setArticles] = useState([
     { id: "1", title: "Sparatutto" },
@@ -46,44 +49,14 @@ export default function App() {
           </h2>
 
           {/*//^   FORM   */}
-          <form
+          <ArticleForm
+            formData={formData}
+            onFormChange={setFormData}
             onSubmit={handleSubmit}
-            className="mb-5 shadow-sm p-4 bg-light rounded border"
-          >
-            <label className="form-label fw-bold">Nuovo Articolo</label>
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control form-control-lg"
-                placeholder="Inserisci il titolo..."
-                value={formData}
-                onChange={(e) => setFormData(e.target.value)}
-              />
-              <button className="btn btn-primary px-4" type="submit">
-                Aggiungi
-              </button>
-            </div>
-          </form>
+          />
 
           {/*//^ LISTA ARTICOLI */}
-          <ul className="list-group shadow-lg">
-            {articles.map((article) => (
-              <li
-                key={article.id}
-                className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-              >
-                <span className="fs-5">{article.title}</span>
-
-                {/*//^ bottone che cancella */}
-                <button
-                  className="btn btn-danger btm-sm"
-                  onClick={() => deleteArticle(article.id)}
-                >
-                  Cancella
-                </button>
-              </li>
-            ))}
-          </ul>
+          <ArticleList listeDiArticle={articles} onDelete={deleteArticle} />
         </div>
       </div>
     </div>
